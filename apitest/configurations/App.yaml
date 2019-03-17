@@ -1,0 +1,67 @@
+# Convention for this configuration
+# - string datatype value use '' ; ex: 'this is string'
+# - int datatype value use int ; ex: 1200
+# - option value use value inside comments ; ex: ('development'|'staging'|'production') use 'development'
+
+# Application configuration
+app:
+  name: 'test_avns/apitest'
+  port: 8082
+  read_timeout: 6 # seconds
+  write_timeout: 10 # seconds
+  timezone: 'Asia/Jakarta'
+  debug: false # (true|false)
+  env: 'development' # ('development'|'staging'|'production')
+  secret_id: ""
+
+## dev Database connection and credential configuration for master
+database_sql_master:
+  db_name: 'test_avns/apitest'
+  host: 'localhost'
+  port: 3306
+  user: 'root'
+  password: 'P4ssw0rd-1'
+  charset: 'utf8'
+
+# Database connection and credential configuration for slave
+database_sql_slave:
+ db_name: 'test_avns/apitest'
+ host: 'localhost'
+ port: 3306
+ user: 'root'
+ password: 'P4ssw0rd-1'
+ charset: 'utf8'
+
+# Database connection and credential configuration
+database:
+  max_life_time: 30
+  max_idle_connection: 10
+  max_open_connection: 30
+  timeout: 3 # in second
+
+# Redis connection configuration
+redis:
+  host: 'localhost'
+  port: 6379
+  db: 5
+  password: ''
+  prefix: 'test_avns/apitest'
+  cache_duration: 1
+  cache_duration_session: 30
+  cache_duration_token_trx : 15
+  enable: true
+
+# Configuration for circuit breaker
+circuit_breaker:
+  max_partner_request_timeout: 5 # seconds
+  max_concurrency: 300
+
+log:
+  path: "./logs/"
+  format_output: stdout # json|text
+  level: 0 # 0= every think logging, 1=  debug level , 2=warning level, 3= error only
+  rotate: daily # daily|static,  default daily
+
+apm:
+  enable: false
+  address: "localhost:8126"
